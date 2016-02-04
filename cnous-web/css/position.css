@@ -1,0 +1,14 @@
+@CHARSET "ISO-8859-1";
+#left{
+	 float: left;
+    position: static;
+}
+#right{
+	 float: right;
+    position: static;
+    height: 100%;
+}
+#footer{
+	 float: right;
+    position: static;
+}
