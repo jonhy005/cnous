@@ -3,8 +3,9 @@
 <html>
 <?php $this->load->view($head);?>
 <body>
-<div id="left"><?php $this->load->view($left);?> </div>
-<div id="right"><?php $this->load->view($body);?></div>
-<div id="footer"><?php $this->load->view($footer);?></div>
+	<div class="container">
+		<?php $this->load->view($left);?> 
+		<div class="main"><?php $this->load->view($body);?></div>
+	</div>
 </body>
 </html>

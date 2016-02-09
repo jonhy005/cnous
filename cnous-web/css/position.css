@@ -1,14 +1,8 @@
 @CHARSET "ISO-8859-1";
-#left{
-	 float: left;
-    position: static;
-}
-#right{
-	 float: right;
-    position: static;
-    height: 100%;
-}
-#footer{
-	 float: right;
-    position: static;
+body{
+	background-image: url("/edsa-cnous-web/images/background/IMG_9857.jpg");
+	background-size: 90%;
+	background-repeat:  no-repeat;
+	background-position: 100% 0% ;
+	
 }

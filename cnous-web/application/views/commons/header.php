@@ -4,12 +4,12 @@
 $this->load->view("commons/cssImports");
 $this->load->view("commons/javascriptImports");
 $this->load->helper('url');
-$this->lang->load('menu', $this->session->userdata('lg'))
+$this->lang->load('home', $this->session->userdata('lg'))
 ?>
 <title>	
-<?php if (isset($title)){?>
-<?php if(isset ($title["title"])){ ?><?php echo $this->lang->line($title["title"]); ?>&nbsp;-&nbsp;<?php }?>
-<?php } ?>
+<?php 
+echo $this->lang->line($title); 
+?>
 </title>
 <!--[if !IE 7]>
 	<style type="text/css">

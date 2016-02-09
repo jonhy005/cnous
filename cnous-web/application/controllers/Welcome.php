@@ -3,11 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	var $title=array(
-			"race"=>"menu_trail_key_title",
-			"title"=>"menu_trail_key_sub_title",
-			"date"=>"menu_trail_key_date"
-	);
+	var $title="home_title";
 	var $menu=array(
 			"menu_key_home"=>"/nobressart/index.php/courses/trail/index",
 			"menu_key_info"=>"/nobressart/index.php/courses/trail/info",

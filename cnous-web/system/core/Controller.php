@@ -93,14 +93,6 @@ class CI_Controller {
 	}
 	// --------------------------------------------------------------------
 
-	
-	
-	
-
-	public function getMenu(){
-	}
-	public function getTitle(){
-	}
 	public function render($data=array(),$body="commons/body",$head="commons/header",$left="commons/left",$footer="commons/footer",$stringOutput=false){
 		$postLg=$this->input->get("lg");
 		$sessLg=$this->session->userdata('lg');

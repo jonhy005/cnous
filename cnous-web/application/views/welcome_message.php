@@ -2,4 +2,4 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<span>welcome</span>
+<p>welcome</p>
