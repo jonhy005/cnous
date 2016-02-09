@@ -4,7 +4,7 @@
 <?php $this->load->view($head);?>
 <body>
 	<div class="container">
-		<?php $this->load->view($left);?> 
+		<div class="left"><?php $this->load->view($left);?></div>
 		<div class="main"><?php $this->load->view($body);?></div>
 	</div>
 </body>
