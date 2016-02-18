@@ -1,6 +1,6 @@
 <span class="right">
-<img src="http://icons.iconarchive.com/icons/double-j-design/handy/64/cart-icon.png"/>
-<img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/48/yellow-home-icon.png"/>
+<a href="/edsa-cnous-web/index.php/action/home"><img src="/edsa-cnous-web/images/icon/shopping_cart.png" width="48px"/></a>
+<a href="/edsa-cnous-web/index.php/action/home"><img src="/edsa-cnous-web/images/icon/yellow-home-icon.png"/></a>
 
 </span>
 
