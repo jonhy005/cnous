@@ -1,21 +1,70 @@
 @CHARSET "ISO-8859-1";
-body{
+
+body {
 	background-image: url("/edsa-cnous-web/images/background/IMG_9857.jpg");
 	background-size: 100%;
-	background-repeat:  no-repeat;
+	background-repeat: no-repeat;
 }
 
-.left{
-	
-	float:left;
+.container {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top:10px;
+	bottom:100px;
 }
-.main p {
-position: absolute;
-top: -10px;
-right: 2em;
-left: 15em;
-bottom: 0;
-background-color: white;
- opacity: 0.5;
- border-radius: 15px;
+.head{
+	background-color: none;
+	display: block;
+	letter-spacing: 1px;
+	font-weight: 700;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	overflow: hidden;
+	padding: 15px;
+}
+#logoMidi{
+	position: absolute;
+	left: 12Spx;
+	z-index: 9999;
+	
+}
+#logoMidi img{
+	width: 35%;
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+.main img {
+	width: 500px;
+}
+
+.main h2 {
+	font-size: 200%;
+	color: #17954c;
+	border-bottom: 1px solid #17954c;
+	text-align: left;
+}
+
+.main {
+	font-family: 'Source Sans Pro', sans-serif;
+	overflow: auto;
+	background-color: white;
+	opacity: 0.8;
+	border-radius: 15px;
+	color: #333;
+/* 	text-align: justify; */
+	margin-right:20px;
+	height: 100%;
+	padding: 20px;
+}
+.main .content{
+	padding-left: 40px;
+	
 }

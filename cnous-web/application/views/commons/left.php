@@ -1,15 +1,6 @@
-<!-- <ul class="cbp-vimenu"> -->
-<!-- 	<li><a href="#" class="icon-logo">Logo</a></li> -->
-<!-- 	<li><a href="#" class="icon-archive">Archive</a></li> -->
-<!-- 	<li><a href="#" class="icon-search">Search</a></li> -->
-<!-- 	<li class="cbp-vicurrent"><a href="#" class="icon-pencil">Pencil</a></li> -->
-<!-- 	<li><a href="#" class="icon-location">Location</a></li> -->
-<!-- 	<li><a href="#" class="icon-images">Images</a></li> -->
-<!-- 	<li><a href="#" class="icon-download">Download</a></li> -->
-<!-- </ul> -->
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
-<button class="btn btn-4 btn-4a icon-arrow-right">Continue</button>
+<a href="/edsa-cnous-web/index.php/action/info" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Qui sommes-nous ?</span></button></a>
+<a href="/edsa-cnous-web/index.php/action/realisation" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Nos réalisations « Maison »</span></button></a>
+<a href="/edsa-cnous-web/index.php/action/cadeau" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Un cadeau ?</span></button></a>
+<a href="/edsa-cnous-web/index.php/action/travail" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Comment travaillons-nous ?</span></button></a>
+<a href="/edsa-cnous-web/index.php/action/garanties" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Garanties</span></button></a>
+<a href="/edsa-cnous-web/index.php/action/situation" ><button class="btn btn-normal btn-normala icon-arrow-right"><span class="menuTxt">Où nous trouver ?</span></button></a>
