@@ -1,5 +1,5 @@
 <?php
-class Es_model extends CI_Model {
+class Cn_model extends CI_Model {
 
 	// ---------------------------------- ATTRIBUTES
 	var $id;
@@ -35,6 +35,22 @@ class Es_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Loads List of current Object defined by the given params
+	 * @param array $paramArray
+	 */
+	function getBykey($pageName,$textName){
+		$query =$this->db->select()->from($this->getTableName())->where(array (
+						'page_name' => $pageName,
+						'text_area_name' => $textName
+						))->get();
+		if($query-> num_rows() == 1){
+			$currentRow =$query->result(get_class($this));
+			return $currentRow[0];
+		}else{
+			return false;
+		}
+	}
 	/**
 	 * Loads List of current Object defined by the given params
 	 * @param array $paramArray

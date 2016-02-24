@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 /**
  * Application Controller Class
@@ -43,76 +43,89 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/general/controllers.html
+ * @package CodeIgniter
+ * @subpackage Libraries
+ * @category Libraries
+ * @author EllisLab Dev Team
+ * @link https://codeigniter.com/user_guide/general/controllers.html
  */
 class CI_Controller {
-
+	
 	/**
 	 * Reference to the CI singleton
 	 *
-	 * @var	object
+	 * @var object
 	 */
 	private static $instance;
 	private static $lg;
-
+	
 	/**
 	 * Class constructor
 	 *
-	 * @return	void
+	 * @return void
 	 */
-	public function __construct()
-	{
-		self::$instance =& $this;
-
+	public function __construct() {
+		self::$instance = & $this;
+		
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
-		foreach (is_loaded() as $var => $class)
-		{
-			$this->$var =& load_class($class);
+		foreach ( is_loaded () as $var => $class ) {
+			$this->$var = & load_class ( $class );
 		}
-
-		$this->load =& load_class('Loader', 'core');
-		$this->load->initialize();
-		log_message('info', 'Controller Class Initialized');
+		
+		$this->load = & load_class ( 'Loader', 'core' );
+		$this->load->initialize ();
+		
+		log_message ( 'info', 'Controller Class Initialized' );
 	}
-
+	
 	/**
 	 * Get the CI singleton
 	 *
 	 * @static
-	 * @return	object
+	 *
+	 * @return object
 	 */
-	public static function &get_instance()
-	{
+	public static function &get_instance() {
 		return self::$instance;
 	}
 	// --------------------------------------------------------------------
-
-	public function render($data=array(),$body="commons/body",$head="commons/header",$left="commons/left",$footer="commons/footer",$stringOutput=false){
-		$postLg=$this->input->get("lg");
-		$sessLg=$this->session->userdata('lg');
-		if(isset($postLg) && $postLg!=""){
-			$this->session->set_userdata('lg',$postLg);
-		}else{
-			if(isset($sessLg) && $sessLg!=""){
-				$this->session->set_userdata('lg',$sessLg);
-			}else{
-				$this->session->set_userdata('lg','french');
+	public function render($data = array(), $body = "commons/body", $head = "commons/header", $left = "commons/left", $footer = "commons/footer", $stringOutput = false) {
+		$postLg = $this->input->get ( "lg" );
+		$sessLg = $this->session->userdata ( 'lg' );
+		if (isset ( $postLg ) && $postLg != "") {
+			$this->session->set_userdata ( 'lg', $postLg );
+		} else {
+			if (isset ( $sessLg ) && $sessLg != "") {
+				$this->session->set_userdata ( 'lg', $sessLg );
+			} else {
+				$this->session->set_userdata ( 'lg', 'french' );
 			}
 		}
-		$data["menu"]=$this->getMenu();
-		$data["title"]=$this->getTitle();
-		$data["head"]=$head;
-		$data["left"]=$left;
-		$data["body"]=$body;
-		$data["footer"]=$footer;
-		$data["stringOutput"]=$stringOutput;
-		$this->load->view("commons/main_layout",$data,$stringOutput);
+		$data ["menu"] = $this->getMenu ();
+		$data ["title"] = $this->getTitle ();
+		$data ["head"] = $head;
+		$data ["left"] = $left;
+		$data ["body"] = $body;
+		$data ["footer"] = $footer;
+		$data ["stringOutput"] = $stringOutput;
+		
+		$this->load->helper ( 'ckeditor' );
+		
+		// Ckeditor's configuration
+		$data ['ckeditor'] = array (
+				
+				// ID of the textarea that will be replaced
+				'id' => 'content',
+				'path' => 'scripts/ckeditor',
+				'config' => array (
+						'toolbar' => 'Full',
+						'height' => '300px' 
+						),
+				// Replacing styles from the "Styles tool"
+		);
+		
+		$this->load->view ( "commons/main_layout", $data, $stringOutput );
 	}
-
 }

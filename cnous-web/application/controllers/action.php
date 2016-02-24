@@ -12,30 +12,37 @@ class Action extends CI_Controller {
 	public function getTitle() {
 		return $this->title;
 	}
-	public function followLink($body) {
-		$this->render ( array (), $body );
+	public function followLink($body,$data=array()) {
+		$this->render ( $data, $body );
+	}
+	
+	public function loadText($pageName,$textName) {
+		$this->load->model('text_model', 'text');
+		$textModel = $this->text->getByKey($pageName,$textName);
+		$data['textData']=$textModel;
+		$this->followLink($pageName,$data);
 	}
 	
 	// -------------------------------------------------- Controller Methods
 	public function info() {
-		$this->followLink ( "info_message" );
+		$this->loadText( "info_message","info_message_text_1");
 	}
 	public function realisation() {
-		$this->followLink ( "realisation_message" );
+		$this->loadText( "realisation_message","realisation_message_text_1");
 	}
 	public function situation() {
-		$this->followLink ( "situation_message" );
+		$this->loadText( "situation_message","situation_message_text_1");
 	}
 	public function cadeau() {
-		$this->followLink ( "cadeau_message" );
+		$this->loadText( "cadeau_message","cadeau_message_text_1");
 	}
 	public function garanties() {
-		$this->followLink ( "garanties_message" );
+		$this->loadText( "garanties_message","garanties_message_text_1");
 	}
 	public function travail() {
-		$this->followLink ( "travail_message" );
+		$this->loadText( "travail_message","travail_message_text_1");
 	}
 	public function home() {
-		$this->followLink ( "welcome_message" );
+		$this->loadText( "welcome_message","welcome_message_text_1");
 	}
 }
