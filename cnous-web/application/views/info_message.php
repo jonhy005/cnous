@@ -1,7 +1,13 @@
-<?php ?>
+<?php if($editMode){ ?>
+	<?php echo form_open('action/submitText'); ?>
+	<input type="hidden" name="id" id="pageNameId" value="<?php echo  $textData->ID; ?>"/>
+	<textarea name="content" id="content" >
+<?php }?>
 
-
-<textarea name="content" id="content" >
 <?php echo $textData->TEXT; ?>
-</textarea>
-<?php echo display_ckeditor($ckeditor); ?>
+
+<?php if($editMode){ ?>
+	</textarea>
+	<?php echo display_ckeditor($ckeditor); ?>
+</form>
+<?php }?>

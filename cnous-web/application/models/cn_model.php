@@ -17,12 +17,17 @@ class Cn_model extends CI_Model {
 	}
 	function getById($id){
 		
-		$query = $this->db->get_where($this->getTableName(), array('id' => $id));
-		if($query -> num_rows() == 1){
-			return $query->row(get_class($this)); 
+		
+		$query =$this->db->select()->from($this->getTableName())->where(array (
+				'id' => $id
+		))->get();
+		if($query-> num_rows() == 1){
+			$currentRow =$query->result(get_class($this));
+			return $currentRow[0];
 		}else{
 			return false;
 		}
+	
 	}
 
 	function getAllLastRows($limit){
@@ -62,15 +67,17 @@ class Cn_model extends CI_Model {
 	/**
 	 *
 	 */
-	function saveOrUpdate(){
-		if(isset($this->id) && $this->id>0){
-			$this->db->where('id', $this->id);
-			$this->db->update($this->getTableName(), $this);
-			return $this->id;
-		}else if($this->id==0){
-			$this->db->insert($this->getTableName(), $this);
-			$this->id=$this->db->insert_id();
-			return $this->id;
+	function saveOrUpdate($obj){
+		
+		
+		if(isset($obj->ID) && $obj->ID>0){
+			$this->db->where('ID', $obj->ID);
+			$this->db->update($this->getTableName(), $obj);
+			return $obj->ID;
+		}else if($obj->ID==0){
+			$this->db->insert($this->getTableName(), $obj);
+			$obj->ID=$this->db->insert_id();
+			return $obj->ID;
 		}else{
 			die ("Cannot persist Object with id value: ".$id);
 		}

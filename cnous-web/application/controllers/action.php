@@ -2,9 +2,8 @@
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Action extends CI_Controller {
 	var $title = "home_title";
-	var $menu = array ()
-
-	;
+	var $menu = array ();
+	
 	// --------------------------------------------------COMMON METHODS
 	public function getMenu() {
 		return $this->menu;
@@ -15,6 +14,22 @@ class Action extends CI_Controller {
 	public function followLink($body,$data=array()) {
 		$this->render ( $data, $body );
 	}
+	
+	public function alert($value){
+		echo "<script>alert('".$value."');</script>";
+	}
+	public function getProperty($key){
+		$query =$this->db->select()->from("cn_config")->where(array (
+				'name' => $key
+		))->get();
+		if($query-> num_rows() == 1){
+			$currentRow =$query->result();
+			return $currentRow[0]->value;
+		}else{
+			return false;
+		}
+	}
+	
 	
 	public function loadText($pageName,$textName) {
 		$this->load->model('text_model', 'text');
@@ -44,5 +59,22 @@ class Action extends CI_Controller {
 	}
 	public function home() {
 		$this->loadText( "welcome_message","welcome_message_text_1");
+	}
+	
+	public function toogleEditMode(){
+		$id=$this->input->post("id");
+		$this->load->model('text_model', 'text');
+		$obj = $this->text->getById($id);
+		$this->loadText( $obj->PAGE_NAME,$obj->TEXT_AREA_NAME);
+	}
+	public function submitText(){
+		$content=$this->input->post("content");
+		$id=$this->input->post("id");
+		$this->load->model('text_model', 'text');
+		$obj = $this->text->getById($id);
+		$obj->TEXT=$content;
+		$this->text->saveOrUpdate($obj);
+		
+		$this->loadText( $obj->PAGE_NAME,$obj->TEXT_AREA_NAME);
 	}
 }

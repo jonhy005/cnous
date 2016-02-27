@@ -58,6 +58,7 @@ class Tools {
 		return $arrayDate[2]."/".$arrayDate[1]."/".$arrayDate[0];
 	}
 	
+	
 }
 
 /* End of file Tools.php */

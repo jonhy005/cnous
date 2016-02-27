@@ -92,16 +92,9 @@ class CI_Controller {
 	}
 	// --------------------------------------------------------------------
 	public function render($data = array(), $body = "commons/body", $head = "commons/header", $left = "commons/left", $footer = "commons/footer", $stringOutput = false) {
-		$postLg = $this->input->get ( "lg" );
-		$sessLg = $this->session->userdata ( 'lg' );
-		if (isset ( $postLg ) && $postLg != "") {
-			$this->session->set_userdata ( 'lg', $postLg );
-		} else {
-			if (isset ( $sessLg ) && $sessLg != "") {
-				$this->session->set_userdata ( 'lg', $sessLg );
-			} else {
-				$this->session->set_userdata ( 'lg', 'french' );
-			}
+
+		if(!isset($data["removeBackground"])){
+			$data["removeBackground"]=false;
 		}
 		$data ["menu"] = $this->getMenu ();
 		$data ["title"] = $this->getTitle ();
@@ -110,6 +103,19 @@ class CI_Controller {
 		$data ["body"] = $body;
 		$data ["footer"] = $footer;
 		$data ["stringOutput"] = $stringOutput;
+		
+		$postEditMode = $this->input->post("editMode");
+		$sessEditMode = $this->session->userdata ( 'editMode' );
+		if (isset ( $postEditMode ) && $postEditMode != "") {
+			$this->session->set_userdata ( 'editMode', $postEditMode );
+		} else {
+			if (isset ( $sessEditMode ) && $sessEditMode != "") {
+				$this->session->set_userdata ( 'editMode', $sessEditMode );
+			} else {
+				$this->session->set_userdata ( 'editMode', "false" );
+			}
+		}
+		$data ["editMode"]=$this->session->userdata ( 'editMode' )==="true";
 		
 		$this->load->helper ( 'ckeditor' );
 		

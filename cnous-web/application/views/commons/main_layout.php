@@ -8,7 +8,6 @@
 $this->load->view("commons/cssImports");
 $this->load->view("commons/javascriptImports");
 $this->load->helper('url');
-$this->lang->load('home', $this->session->userdata('lg'))
 ?>
 <title>	
 <?php 
@@ -23,10 +22,27 @@ echo $this->lang->line($title);
 </head>
 <body>
 	<div class="container" >
-		<div id="logoMidi"><img src="/edsa-cnous-web/images/icon/logo_midi.png" /></div>
+		<?php 
+			$clazz="main";
+			if($removeBackground){
+				$clazz.=" noBackground";
+			}else{
+				?><div id="logoMidi"><img src="/edsa-cnous-web/images/icon/logo_midi.png" /></div><?php
+			}
+		?>
 		<div class="head"><?php $this->load->view($head);?></div>
 		<div class="left"><?php $this->load->view($left);?></div>
-		<div class="main"><?php $this->load->view($body);?></div>
+		
+		<div class="<?php echo $clazz;?>">
+			<?php $this->load->view($body);?>
+			<div>
+				<?php echo form_open('action/toogleEditMode'); ?>
+					<input type="hidden" name="id" id="pageNameId" value="<?php echo  $textData->ID; ?>"/>
+					<input type="hidden" name="editMode" id="editModeId" value="<?php echo  $editMode?"false":"true";  ?>"/>
+					<input type="submit" value="<?php echo  $editMode?"visionner":"modifier";  ?>"/>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
