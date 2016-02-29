@@ -1,24 +1,17 @@
 <?php
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Action extends CI_Controller {
+	// --------------------------------------------------PRIVATE ATTRIBUTES
+	
 	var $title = "home_title";
 	var $menu = array ();
 	
-	// --------------------------------------------------COMMON METHODS
-	public function getMenu() {
-		return $this->menu;
-	}
-	public function getTitle() {
-		return $this->title;
-	}
-	public function followLink($body,$data=array()) {
-		$this->render ( $data, $body );
-	}
+	// --------------------------------------------------PRIVATE METHODS
 	
-	public function alert($value){
+	private function alert($value){
 		echo "<script>alert('".$value."');</script>";
 	}
-	public function getProperty($key){
+	private function getProperty($key){
 		$query =$this->db->select()->from("cn_config")->where(array (
 				'name' => $key
 		))->get();
@@ -31,11 +24,23 @@ class Action extends CI_Controller {
 	}
 	
 	
-	public function loadText($pageName,$textName) {
+	private function loadText($pageName,$textName) {
 		$this->load->model('text_model', 'text');
 		$textModel = $this->text->getByKey($pageName,$textName);
 		$data['textData']=$textModel;
 		$this->followLink($pageName,$data);
+	}
+	
+	
+	// -------------------------------------------------- PUBLIC METHODS
+	public function getMenu() {
+		return $this->menu;
+	}
+	public function getTitle() {
+		return $this->title;
+	}
+	public function followLink($body,$data=array()) {
+		$this->render ( $data, $body );
 	}
 	
 	// -------------------------------------------------- Controller Methods

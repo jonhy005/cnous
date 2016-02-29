@@ -35,6 +35,7 @@ echo $this->lang->line($title);
 		
 		<div class="<?php echo $clazz;?>">
 			<?php $this->load->view($body);?>
+			<?php if(isset( $textData->ID) &&  $textData->ID!=""){?>
 			<div>
 				<?php echo form_open('action/toogleEditMode'); ?>
 					<input type="hidden" name="id" id="pageNameId" value="<?php echo  $textData->ID; ?>"/>
@@ -42,6 +43,7 @@ echo $this->lang->line($title);
 					<input type="submit" value="<?php echo  $editMode?"visionner":"modifier";  ?>"/>
 				</form>
 			</div>
+			<?php }?>
 		</div>
 	</div>
 </body>
