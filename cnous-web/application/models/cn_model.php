@@ -12,12 +12,7 @@ class Cn_model extends CI_Model {
 		die("Cannot call super class tableName, please override");
 	}
 	// ---------------------------------- PUBLIC METHODS
-	function getId(){
-		return $this->id;
-	}
 	function getById($id){
-		
-		
 		$query =$this->db->select()->from($this->getTableName())->where(array (
 				'id' => $id
 		))->get();
@@ -69,15 +64,14 @@ class Cn_model extends CI_Model {
 	 */
 	function saveOrUpdate($obj){
 		
-		
-		if(isset($obj->ID) && $obj->ID>0){
-			$this->db->where('ID', $obj->ID);
+		if(isset($obj->id) && $obj->id>0){
+			$this->db->where('id', $obj->id);
 			$this->db->update($this->getTableName(), $obj);
-			return $obj->ID;
-		}else if($obj->ID==0){
+			return $obj->id;
+		}else if($obj->id==0){
 			$this->db->insert($this->getTableName(), $obj);
-			$obj->ID=$this->db->insert_id();
-			return $obj->ID;
+			$obj->id=$this->db->insert_id();
+			return $obj->id;
 		}else{
 			die ("Cannot persist Object with id value: ".$id);
 		}

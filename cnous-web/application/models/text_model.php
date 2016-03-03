@@ -10,10 +10,11 @@ class Text_model extends Cn_model {
 	}
 	// ---------------------------------- CONSTANT
 	// ---------------------------------- ATTRIBUTES
-	var $PAGE_NAME;
-	var $RAW_TEXT;
-	var $TEXT_AREA_NAME;
-	var $TEXT;
+	var $id;
+	var $page_name;
+	var $raw_text;
+	var $text_area_name;
+	var $text;
 	
 	// ---------------------------------- CONSTRUCTOR
 	function __construct(){

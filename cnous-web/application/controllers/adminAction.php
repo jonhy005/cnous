@@ -1,32 +1,36 @@
 <?php
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
-class AdminAction extends Action {
+class AdminAction extends CI_Controller {
 	// --------------------------------------------------PRIVATE ATTRIBUTES
 	function __construct() {
 		parent::__construct ();
-		
-		if (! $this->ion_auth->logged_in ()) {
-			redirect ( 'auth/login' );
-		}
 	}
 	
-	// --------------------------------------------------PRIVATE METHODS
+	// -------------------------------------------------- PRIVATE METHODS
 	// -------------------------------------------------- PUBLIC METHODS
-	// -------------------------------------------------- Controller Methods
-	public function toogleEditMode() {
-		$id = $this->input->post ( "id" );
-		$this->load->model ( 'text_model', 'text' );
-		$obj = $this->text->getById ( $id );
-		$this->loadText ( $obj->PAGE_NAME, $obj->TEXT_AREA_NAME );
+	// -------------------------------------------------- CONTROLLER METHODS
+	public function index() {
+		$data["openLogin"]=true;
+		$this->followLink("welcome_message",$data);
 	}
-	public function submitText() {
-		$content = $this->input->post ( "content" );
-		$id = $this->input->post ( "id" );
-		$this->load->model ( 'text_model', 'text' );
-		$obj = $this->text->getById ( $id );
-		$obj->TEXT = $content;
-		$this->text->saveOrUpdate ( $obj );
+	public function editMode() {
+		$login=$this->input->post("login");
+		$password=$this->input->post("password");
+		$data=array();
+		if($login==="cnous" && $password==="toscane"){
+			$data['updateSessionEditMode']=true;
+			$data["removeBackground"]=true;
+		}else{
+			$data['updateSessionEditMode']=false;
+			$data["removeBackground"]=true;
+		}
 		
-		$this->loadText ( $obj->PAGE_NAME, $obj->TEXT_AREA_NAME );
+		$this->followLink("welcome_message",$data);
+	}
+	public function viewMode() {
+		$data=array();
+		$data['updateSessionEditMode']=false;
+		$data["removeBackground"]=true;
+		$this->followLink("welcome_message",$data);
 	}
 }

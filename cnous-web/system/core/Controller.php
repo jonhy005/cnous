@@ -51,6 +51,9 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
  */
 class CI_Controller {
 	
+	
+	// -------------------------------------------------------------------- PRIVATE ATTRIBUTES
+	
 	/**
 	 * Reference to the CI singleton
 	 *
@@ -59,6 +62,7 @@ class CI_Controller {
 	private static $instance;
 	private static $lg;
 	
+	// -------------------------------------------------------------------- PUBLIC CONSTRUCTOR
 	/**
 	 * Class constructor
 	 *
@@ -90,35 +94,46 @@ class CI_Controller {
 	public static function &get_instance() {
 		return self::$instance;
 	}
-	// --------------------------------------------------------------------
+	// -------------------------------------------------------------------- PRIVATE METHODS
+	private function _isEditMode($data){
+		if(isset($data['updateSessionEditMode'])){
+			$this->session->set_userdata ('editMode', $data['updateSessionEditMode'] );
+		}
+		return $this->session->userdata('editMode');
+	}
+	// -------------------------------------------------------------------- PUBLIC METHODS
+	public function followLink($body,$data=array()) {
+		$this->render ( $data, $body );
+	}
+	private function alert($value){
+		echo "<script>alert('".$value."');</script>";
+	}
+	public function getProperty($key){
+		$query =$this->db->select()->from("cn_config")->where(array (
+				'name' => $key
+		))->get();
+		if($query-> num_rows() == 1){
+			$currentRow =$query->result();
+			return $currentRow[0]->value;
+		}else{
+			return false;
+		}
+	}
+	
 	public function render($data = array(), $body = "commons/body", $head = "commons/header", $left = "commons/left", $footer = "commons/footer", $stringOutput = false) {
 
 		if(!isset($data["removeBackground"])){
 			$data["removeBackground"]=false;
 		}
-		$data ["menu"] = $this->getMenu ();
-		$data ["title"] = $this->getTitle ();
 		$data ["head"] = $head;
 		$data ["left"] = $left;
 		$data ["body"] = $body;
 		$data ["footer"] = $footer;
 		$data ["stringOutput"] = $stringOutput;
+		$data ["editMode"]=$this->_isEditMode($data);
 		
-		$postEditMode = $this->input->post("editMode");
-		$sessEditMode = $this->session->userdata ( 'editMode' );
-		if (isset ( $postEditMode ) && $postEditMode != "") {
-			$this->session->set_userdata ( 'editMode', $postEditMode );
-		} else {
-			if (isset ( $sessEditMode ) && $sessEditMode != "") {
-				$this->session->set_userdata ( 'editMode', $sessEditMode );
-			} else {
-				$this->session->set_userdata ( 'editMode', "false" );
-			}
-		}
-		$data ["editMode"]=$this->session->userdata ( 'editMode' )==="true";
 		
 		$this->load->helper ( 'ckeditor' );
-		
 		// Ckeditor's configuration
 		$data ['ckeditor'] = array (
 				
@@ -129,6 +144,23 @@ class CI_Controller {
 						'toolbar' => 'Full',
 						'height' => '300px' 
 						),
+				'styles' => array(
+							
+						//Creating a new style named "style 1"
+						'style 1' => array (
+								'name' 		=> 	'Titre',
+								'element' 	=> 	'h2',
+								'styles' => array(
+										'color' 	=> 	'#17954c',
+										'font-weight' 	=> 	'bold',
+										'font-size:'=>'200%',
+										'border-bottom'=>'1px solid #17954c',
+										'text-align'=>'left'
+								)
+						)
+				
+						
+				)
 				// Replacing styles from the "Styles tool"
 		);
 		
