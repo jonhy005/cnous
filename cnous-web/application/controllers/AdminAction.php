@@ -11,6 +11,7 @@ class AdminAction extends CI_Controller {
 	// -------------------------------------------------- CONTROLLER METHODS
 	public function index() {
 		$data["openLogin"]=true;
+		$data["removeBackground"]=true;
 		$this->followLink("welcome_message",$data);
 	}
 	public function editMode() {

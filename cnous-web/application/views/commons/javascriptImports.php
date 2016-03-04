@@ -16,6 +16,7 @@ $(document).ready(function(){
          $(".menuTxt").css("display","inline");
     	
     }  
+    
 });
 $(window).resize(function () {
     if ($(window).width() < 900) {

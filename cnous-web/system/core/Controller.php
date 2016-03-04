@@ -97,13 +97,15 @@ class CI_Controller {
 	// -------------------------------------------------------------------- PRIVATE METHODS
 	private function _isEditMode($data){
 		if(isset($data['updateSessionEditMode'])){
-			$this->session->set_userdata ('editMode', $data['updateSessionEditMode'] );
+			$_SESSION['editMode']=$data['updateSessionEditMode'] ;
+		}else if(!isset($_SESSION['editMode'])){
+			$_SESSION['editMode']=false;
 		}
-		return $this->session->userdata('editMode');
+		return $_SESSION['editMode'];
 	}
 	// -------------------------------------------------------------------- PUBLIC METHODS
 	public function followLink($body,$data=array()) {
-		$this->render ( $data, $body );
+		$this->render( $data, $body );
 	}
 	private function alert($value){
 		echo "<script>alert('".$value."');</script>";
@@ -142,25 +144,10 @@ class CI_Controller {
 				'path' => 'scripts/ckeditor',
 				'config' => array (
 						'toolbar' => 'Full',
-						'height' => '300px' 
-						),
-				'styles' => array(
-							
-						//Creating a new style named "style 1"
-						'style 1' => array (
-								'name' 		=> 	'Titre',
-								'element' 	=> 	'h2',
-								'styles' => array(
-										'color' 	=> 	'#17954c',
-										'font-weight' 	=> 	'bold',
-										'font-size:'=>'200%',
-										'border-bottom'=>'1px solid #17954c',
-										'text-align'=>'left'
-								)
+						'height' => '300px', 
+						'contentsCss'=>'/cnous-web/css/editor.css',
 						)
 				
-						
-				)
 				// Replacing styles from the "Styles tool"
 		);
 		
