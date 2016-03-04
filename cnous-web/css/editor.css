@@ -1,0 +1,37 @@
+@CHARSET "ISO-8859-1";
+
+p{
+ font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
+.mainTitle{
+	font-size: 200%;
+	color: #17954c;
+	text-decoration: underline;
+	border-bottom: none;
+	text-align: left;
+	text-align: right;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
+h1 {
+	font-size: 200%;
+	color: #17954c;
+	border-bottom: 1px solid #17954c;
+	text-align: left;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+h2 {
+	font-size: 100%;
+	color: #17954c;
+	text-align: left;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
+h3 {
+	font-size: 100%;
+	color: #17954c;
+	text-align: left;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
